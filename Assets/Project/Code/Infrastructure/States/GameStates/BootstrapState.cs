@@ -1,0 +1,29 @@
+﻿using Code.Gameplay.StaticData;
+using Project.Code.Infrastructure.States.StateInfrastructure;
+using Project.Code.Infrastructure.States.StateMachine;
+
+namespace Project.Code.Infrastructure.States.GameStates
+{
+    public class BootstrapState : IState
+    {
+        private readonly IGameStateMachine _stateMachine;
+        private readonly IStaticDataService _staticDataService;
+
+        public BootstrapState(IGameStateMachine stateMachine, IStaticDataService staticDataService)
+        {
+            _stateMachine = stateMachine;
+            _staticDataService = staticDataService;
+        }
+
+        public void Enter()
+        {
+            _staticDataService.LoadAll();
+
+            _stateMachine.Enter<InitializeProgressState>();
+        }
+
+        public void Exit()
+        {
+        }
+    }
+}

@@ -1,7 +1,7 @@
 ﻿namespace Code.Gameplay.StaticData
 {
-  public interface IStaticDataService
-  {
-    void LoadAll();
-  }
+    public interface IStaticDataService
+    {
+        void LoadAll();
+    }
 }

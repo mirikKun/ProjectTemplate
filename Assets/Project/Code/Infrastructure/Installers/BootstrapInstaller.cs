@@ -11,58 +11,57 @@ using Zenject;
 
 namespace Project.Code.Infrastructure.Installers
 {
-  public class BootstrapInstaller : MonoInstaller, ICoroutineRunner, IInitializable
-  {
-    public override void InstallBindings()
+    public class BootstrapInstaller : MonoInstaller, ICoroutineRunner, IInitializable
     {
-      BindInputService();
-      BindInfrastructureServices();
-      BindAssetManagementServices();
-      BindCommonServices();
-      BindGameplayServices();
-      BindCameraProvider();
-    }
+        public override void InstallBindings()
+        {
+            BindInputService();
+            BindInfrastructureServices();
+            BindAssetManagementServices();
+            BindCommonServices();
+            BindGameplayServices();
+            BindCameraProvider();
+        }
 
 
+        private void BindCameraProvider()
+        {
+            Container.BindInterfacesAndSelfTo<CameraProvider>().AsSingle();
+        }
 
-    private void BindCameraProvider()
-    {
-      Container.BindInterfacesAndSelfTo<CameraProvider>().AsSingle();
-    }
+        private void BindGameplayServices()
+        {
+            Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+            Container.Bind<ILevelDataProvider>().To<LevelDataProvider>().AsSingle();
+        }
 
-    private void BindGameplayServices()
-    {
-      Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
-      Container.Bind<ILevelDataProvider>().To<LevelDataProvider>().AsSingle();
-    }
+        private void BindInfrastructureServices()
+        {
+            Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle();
+            Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
+        }
 
-    private void BindInfrastructureServices()
-    {
-      Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle();
-      Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
-    }
+        private void BindAssetManagementServices()
+        {
+            Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
+        }
 
-    private void BindAssetManagementServices()
-    {
-      Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
-    }
+        private void BindCommonServices()
+        {
+            Container.Bind<IRandomService>().To<UnityRandomService>().AsSingle();
+            Container.Bind<ITimeService>().To<UnityTimeService>().AsSingle();
+            Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+        }
 
-    private void BindCommonServices()
-    {
-      Container.Bind<IRandomService>().To<UnityRandomService>().AsSingle();
-      Container.Bind<ITimeService>().To<UnityTimeService>().AsSingle();
-      Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
-    }
+        private void BindInputService()
+        {
+            Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle();
+        }
 
-    private void BindInputService()
-    {
-      Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle();
+        public void Initialize()
+        {
+            Container.Resolve<IStaticDataService>().LoadAll();
+            Container.Resolve<ISceneLoader>().LoadScene(Scenes.Meadow);
+        }
     }
-    
-    public void Initialize()
-    {
-      Container.Resolve<IStaticDataService>().LoadAll();
-      Container.Resolve<ISceneLoader>().LoadScene(Scenes.Meadow);
-    }
-  }
 }
