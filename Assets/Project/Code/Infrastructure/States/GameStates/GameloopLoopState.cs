@@ -2,9 +2,9 @@ using Project.Code.Infrastructure.States.StateInfrastructure;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class BattleLoopState : IState, IUpdateable
+    public class GameloopLoopState : IState, IUpdateable
     {
-        public BattleLoopState()
+        public GameloopLoopState()
         {
         }
 
