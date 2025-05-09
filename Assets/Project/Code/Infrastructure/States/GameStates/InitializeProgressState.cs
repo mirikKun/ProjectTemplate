@@ -1,9 +1,9 @@
-using Project.Code.Infrastructure.States.StateInfrastructure;
-using Project.Code.Infrastructure.States.StateMachine;
-using Project.Code.Progress.Data;
-using Project.Code.Progress.Provider;
+using Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateMachine;
+using Code.Progress.Data;
+using Code.Progress.Provider;
 
-namespace Project.Code.Infrastructure.States.GameStates
+namespace Code.Infrastructure.States.GameStates
 {
     public class InitializeProgressState : IState
     {

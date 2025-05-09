@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Code.Infrastructure.Installers
+namespace Code.Infrastructure.Installers
 {
     public class SceneInitializationInstaller : MonoInstaller
     {

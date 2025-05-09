@@ -1,4 +1,4 @@
-using Project.Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateInfrastructure;
 
 namespace Code.Infrastructure.States.GameStates
 {

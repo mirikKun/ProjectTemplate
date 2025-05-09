@@ -4,14 +4,13 @@ using Code.Gameplay.Common.Time;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Levels;
 using Code.Gameplay.StaticData;
+using Code.Infrastructure.AssetManagement;
+using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.GameStates;
-using Project.Code.Infrastructure.AssetManagement;
-using Project.Code.Infrastructure.Loading;
-using Project.Code.Infrastructure.States.GameStates;
-using Project.Code.Infrastructure.States.StateMachine;
+using Code.Infrastructure.States.StateMachine;
 using Zenject;
 
-namespace Project.Code.Infrastructure.Installers
+namespace Code.Infrastructure.Installers
 {
     public class BootstrapInstaller : MonoInstaller, ICoroutineRunner, IInitializable
     {

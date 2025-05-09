@@ -1,8 +1,8 @@
-﻿using Project.Code.Infrastructure.States.Factory;
-using Project.Code.Infrastructure.States.StateInfrastructure;
+﻿using Code.Infrastructure.States.Factory;
+using Code.Infrastructure.States.StateInfrastructure;
 using Zenject;
 
-namespace Project.Code.Infrastructure.States.StateMachine
+namespace Code.Infrastructure.States.StateMachine
 {
     public class GameStateMachine : IGameStateMachine, ITickable
     {

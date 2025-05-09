@@ -1,6 +1,6 @@
-﻿using Project.Code.Progress.Data;
+﻿using Code.Progress.Data;
 
-namespace Project.Code.Progress.Provider
+namespace Code.Progress.Provider
 {
     public class ProgressProvider : IProgressProvider
     {

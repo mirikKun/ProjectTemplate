@@ -1,6 +1,6 @@
 using Code.Gameplay.Levels;
-using Project.Code.Infrastructure.States.StateInfrastructure;
-using Project.Code.Infrastructure.States.StateMachine;
+using Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateMachine;
 
 namespace Code.Infrastructure.States.GameStates
 {
@@ -20,14 +20,13 @@ namespace Code.Infrastructure.States.GameStates
 
         public void Enter()
         {
-            PlaceHero();
+            PlacePlayer();
 
             _stateMachine.Enter<GameloopLoopState>();
         }
 
-        private void PlaceHero()
+        private void PlacePlayer()
         {
-            _heroFactory.CreateHero(_levelDataProvider.StartPoint);
         }
 
         public void Exit()

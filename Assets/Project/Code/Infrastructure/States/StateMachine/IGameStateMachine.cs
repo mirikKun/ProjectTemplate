@@ -1,6 +1,6 @@
-using Project.Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateInfrastructure;
 
-namespace Project.Code.Infrastructure.States.StateMachine
+namespace Code.Infrastructure.States.StateMachine
 {
     public interface IGameStateMachine
     {

@@ -3,20 +3,17 @@ using Code.Gameplay.Levels;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Code.Infrastructure.Installers
+namespace Code.Infrastructure.Installers
 {
     public class LevelInitializer : MonoBehaviour, IInitializable
     {
-        public Camera MainCamera;
-        public Transform StartPoint;
+        [SerializeField] private Camera _mainCamera;
+        [SerializeField] private Transform _startPoint;
         private ICameraProvider _cameraProvider;
         private ILevelDataProvider _levelDataProvider;
 
         [Inject]
-        private void Construct(
-            ICameraProvider cameraProvider,
-            ILevelDataProvider levelDataProvider
-        )
+        private void Construct(ICameraProvider cameraProvider, ILevelDataProvider levelDataProvider)
         {
             _levelDataProvider = levelDataProvider;
             _cameraProvider = cameraProvider;
@@ -24,8 +21,8 @@ namespace Project.Code.Infrastructure.Installers
 
         public void Initialize()
         {
-            _levelDataProvider.SetStartPoint(StartPoint.position);
-            _cameraProvider.SetMainCamera(MainCamera);
+            _levelDataProvider.SetStartPoint(_startPoint.position);
+            _cameraProvider.SetMainCamera(_mainCamera);
         }
     }
 }

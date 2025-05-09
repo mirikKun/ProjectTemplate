@@ -1,8 +1,8 @@
 ﻿using Code.Gameplay.StaticData;
-using Project.Code.Infrastructure.States.StateInfrastructure;
-using Project.Code.Infrastructure.States.StateMachine;
+using Code.Infrastructure.States.StateInfrastructure;
+using Code.Infrastructure.States.StateMachine;
 
-namespace Project.Code.Infrastructure.States.GameStates
+namespace Code.Infrastructure.States.GameStates
 {
     public class BootstrapState : IState
     {
