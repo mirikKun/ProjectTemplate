@@ -1,11 +1,27 @@
+using Code.Infrastructure.Sounds.ScriptableObjects;
 using Code.Infrastructure.StaticData;
+using UnityEngine;
+using UnityEngine.Audio;
 using Zenject;
 
 namespace Code.Infrastructure.Sounds
 {
     public class SoundsSystem : ISoundsSystem
     {
+        private const float LinearEpsilon = 0.0001f;
+
         private IStaticDataService _staticDataService;
+
+        private GameObject _root;
+        private AudioSource _music;
+        private AudioSource _sfx;
+
+        private AudioMixer _mixer;
+        private SoundMixersSO _mixers;
+
+        private float _masterNormalized = 1f;
+        private float _musicNormalized = 1f;
+        private float _sfxNormalized = 1f;
 
         [Inject]
         private void Construct(IStaticDataService staticDataService)
@@ -15,35 +31,118 @@ namespace Code.Infrastructure.Sounds
 
         public void SetMusicVolume(float volume)
         {
-            
+            _musicNormalized = Mathf.Clamp01(volume);
+            if (EnsureMixer())
+                ApplyMixerVolume(_mixers.MusicVolumeParameter, _musicNormalized);
         }
-        
+
         public void SetSFXVolume(float volume)
         {
-
+            _sfxNormalized = Mathf.Clamp01(volume);
+            if (EnsureMixer())
+                ApplyMixerVolume(_mixers.SfxVolumeParameter, _sfxNormalized);
         }
-        
+
         public void SetMasterVolume(float volume)
         {
-
-            
+            _masterNormalized = Mathf.Clamp01(volume);
+            if (EnsureMixer())
+                ApplyMixerVolume(_mixers.MasterVolumeParameter, _masterNormalized);
         }
-        
-        public float GetMusicVolume()
-        {
 
-            return 1f;
-        }
-        
-        public float GetSFXVolume()
-        {
-            return 1;
-        }
-        
-        public float GetMasterVolume()
-        {
+        public float GetMusicVolume() => _musicNormalized;
 
-            return 1f;
+        public float GetSFXVolume() => _sfxNormalized;
+
+        public float GetMasterVolume() => _masterNormalized;
+
+        public void PlaySfx(AudioClip clip, float volumeScale = 1f, float pitch = 1f)
+        {
+            if (clip == null)
+                return;
+
+            EnsureAudioSources();
+            _sfx.pitch = pitch;
+            _sfx.PlayOneShot(clip, Mathf.Clamp01(volumeScale));
+        }
+
+        public void PlayMusic(AudioClip clip, bool loop = true, float volumeScale = 1f)
+        {
+            if (clip == null)
+                return;
+
+            EnsureAudioSources();
+            _music.loop = loop;
+            _music.clip = clip;
+            _music.volume = Mathf.Clamp01(volumeScale);
+            _music.Play();
+        }
+
+        public void StopMusic()
+        {
+            if (_music == null)
+                return;
+
+            _music.Stop();
+            _music.clip = null;
+        }
+
+        private void ApplyMixerVolume(string parameterName, float normalizedVolume)
+        {
+            if (string.IsNullOrEmpty(parameterName) || _mixer == null || _mixers == null)
+                return;
+
+            normalizedVolume = Mathf.Clamp01(normalizedVolume);
+            if (normalizedVolume <= LinearEpsilon)
+            {
+                _mixer.SetFloat(parameterName, _mixers.MinimalVolume);
+                return;
+            }
+
+            float db = Mathf.Log10(normalizedVolume) * 20f;
+            db = Mathf.Max(db, _mixers.MinimalVolume);
+            _mixer.SetFloat(parameterName, db);
+        }
+
+        private bool EnsureMixer()
+        {
+            if (_mixer != null)
+                return true;
+
+            _mixers = _staticDataService.GetSoundMixersSO();
+            if (_mixers == null || _mixers.MusicGroup == null)
+                return false;
+
+            _mixer = _mixers.MusicGroup.audioMixer;
+            if (_mixer == null)
+                return false;
+
+            ApplyMixerVolume(_mixers.MasterVolumeParameter, _masterNormalized);
+            ApplyMixerVolume(_mixers.MusicVolumeParameter, _musicNormalized);
+            ApplyMixerVolume(_mixers.SfxVolumeParameter, _sfxNormalized);
+            return true;
+        }
+
+        private void EnsureAudioSources()
+        {
+            if (_root != null)
+                return;
+
+            if (!EnsureMixer())
+                return;
+
+            _root = new GameObject("[Sounds]");
+            Object.DontDestroyOnLoad(_root);
+
+            _music = _root.AddComponent<AudioSource>();
+            _music.playOnAwake = false;
+            _music.loop = true;
+            _music.outputAudioMixerGroup = _mixers.MusicGroup;
+
+            _sfx = _root.AddComponent<AudioSource>();
+            _sfx.playOnAwake = false;
+            _sfx.loop = false;
+            _sfx.outputAudioMixerGroup = _mixers.SoundGroup;
         }
     }
 }

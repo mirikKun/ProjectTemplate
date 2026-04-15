@@ -5,6 +5,9 @@ using Code.Gameplay.Input.Service;
 using Code.Gameplay.Levels;
 using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.Loading;
+using Code.Infrastructure.Saving;
+using Code.Infrastructure.Settings;
+using Code.Infrastructure.Sounds;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.StaticData;
@@ -22,6 +25,7 @@ namespace Code.Infrastructure.Installers
             BindAssetManagementServices();
             BindCommonServices();
             BindGameplayServices();
+            BindSettings();
             BindCameraProvider();
         }
         private void BindGameStates()
@@ -43,7 +47,14 @@ namespace Code.Infrastructure.Installers
         private void BindGameplayServices()
         {
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+            Container.Bind<ISoundsSystem>().To<SoundsSystem>().AsSingle();
             Container.Bind<ILevelDataProvider>().To<LevelDataProvider>().AsSingle();
+        }
+
+        private void BindSettings()
+        {
+            Container.Bind<ISavingService>().To<PlayerPrefsSavingService>().AsSingle();
+            Container.Bind<ISettingsService>().To<SettingsService>().AsSingle();
         }
 
         private void BindInfrastructureServices()
