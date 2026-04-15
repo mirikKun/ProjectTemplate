@@ -1,4 +1,4 @@
-﻿using Code.Gameplay.StaticData;
+﻿using Code.Infrastructure.StaticData;
 using UnityEngine;
 using Zenject;
 

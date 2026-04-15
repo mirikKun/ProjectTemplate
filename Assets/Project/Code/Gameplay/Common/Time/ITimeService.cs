@@ -6,7 +6,10 @@ namespace Code.Gameplay.Common.Time
     {
         float DeltaTime { get; }
         DateTime UtcNow { get; }
+        float TimeScale { get; }
         void StopTime();
         void StartTime();
+        event Action<float> TimeScaleChanged;
+        void SetTimeScale(float timeScale);
     }
 }

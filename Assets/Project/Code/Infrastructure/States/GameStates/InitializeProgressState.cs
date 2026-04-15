@@ -1,7 +1,7 @@
+using Code.Infrastructure.Progress.Data;
+using Code.Infrastructure.Progress.Provider;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
-using Code.Progress.Data;
-using Code.Progress.Provider;
 
 namespace Code.Infrastructure.States.GameStates
 {
