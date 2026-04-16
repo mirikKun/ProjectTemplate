@@ -6,5 +6,9 @@ namespace Code.Infrastructure.Progress.Provider
     {
         ProgressData ProgressData { get; }
         void SetProgressData(ProgressData data);
+        void SaveProgress();
+        void LoadProgress();
+        bool HasProgress();
+        void CreateDefaultProgress();
     }
 }

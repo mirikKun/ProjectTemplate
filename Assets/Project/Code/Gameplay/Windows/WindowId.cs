@@ -2,6 +2,8 @@
 {
     public enum WindowId
     {
-        PauseWindow = 0,
+        None = 0,
+        Settings = 1,
+        MainMenu = 2,
     }
 }

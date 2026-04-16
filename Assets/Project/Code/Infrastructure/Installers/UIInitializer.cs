@@ -11,8 +11,11 @@ namespace Code.Infrastructure.Installers
 
 
         [Inject]
-        private void Construct(IWindowFactory windowFactory) =>
+        private void Construct(IWindowFactory windowFactory)
+        {
             _windowFactory = windowFactory;
+            Initialize();
+        }
 
         public void Initialize() =>
             _windowFactory.SetUIRoot(_uiRoot);

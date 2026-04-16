@@ -3,11 +3,14 @@ using Code.Gameplay.Common.Random;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Levels;
+using Code.Gameplay.Windows;
 using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.Loading;
+using Code.Infrastructure.Progress.Provider;
 using Code.Infrastructure.Saving;
 using Code.Infrastructure.Settings;
 using Code.Infrastructure.Sounds;
+using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using Code.Infrastructure.StaticData;
@@ -20,13 +23,20 @@ namespace Code.Infrastructure.Installers
         public override void InstallBindings()
         {
             BindInputService();
+            BindGameStateMachine();
             BindGameStates();
             BindInfrastructureServices();
             BindAssetManagementServices();
             BindCommonServices();
-            BindGameplayServices();
             BindSettings();
+            BindGameplayServices();
             BindCameraProvider();
+        }
+
+        private void BindGameStateMachine()
+        {
+            Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
+            Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
         }
         private void BindGameStates()
         {
@@ -37,6 +47,9 @@ namespace Code.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<LoadingGameplayState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameplayEnterState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameloopLoopState>().AsSingle();
+            
+
+
         }
 
         private void BindCameraProvider()
@@ -49,6 +62,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<ISoundsSystem>().To<SoundsSystem>().AsSingle();
             Container.Bind<ILevelDataProvider>().To<LevelDataProvider>().AsSingle();
+            Container.Bind<IProgressProvider>().To<ProgressProvider>().AsSingle();
         }
 
         private void BindSettings()
@@ -72,6 +86,9 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IRandomService>().To<UnityRandomService>().AsSingle();
             Container.Bind<ITimeService>().To<UnityTimeService>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+            
+            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
+            Container.Bind<IWindowService>().To<WindowService>().AsSingle();
         }
 
         private void BindInputService()

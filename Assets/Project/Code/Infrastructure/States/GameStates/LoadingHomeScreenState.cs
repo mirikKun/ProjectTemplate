@@ -1,3 +1,4 @@
+using Code.Gameplay.Levels.Enum;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
@@ -6,7 +7,7 @@ namespace Code.Infrastructure.States.GameStates
 {
     public class LoadingHomeScreenState : IState
     {
-        private const string HomeScreenSceneName = "HomeScreen";
+        private const Scenes HomeScreenScene = Scenes.MainMenu;
         private readonly IGameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
 
@@ -18,7 +19,7 @@ namespace Code.Infrastructure.States.GameStates
 
         public void Enter()
         {
-            _sceneLoader.LoadScene(HomeScreenSceneName, EnterHomeScreenState);
+            _sceneLoader.LoadScene(Scenes.MainMenu.ToString(), EnterHomeScreenState);
         }
 
         private void EnterHomeScreenState()

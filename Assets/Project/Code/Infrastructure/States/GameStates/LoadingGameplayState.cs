@@ -1,10 +1,11 @@
+using Code.Gameplay.Levels.Enum;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class LoadingGameplayState : IPayloadState<string>
+    public class LoadingGameplayState : IPayloadState<Scenes>
     {
         private readonly IGameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
@@ -15,9 +16,9 @@ namespace Code.Infrastructure.States.GameStates
             _sceneLoader = sceneLoader;
         }
 
-        public void Enter(string sceneName)
+        public void Enter(Scenes scene)
         {
-            _sceneLoader.LoadScene(sceneName, EnterBattleLoopState);
+            _sceneLoader.LoadScene(scene.ToString(),EnterBattleLoopState);
         }
 
         private void EnterBattleLoopState()

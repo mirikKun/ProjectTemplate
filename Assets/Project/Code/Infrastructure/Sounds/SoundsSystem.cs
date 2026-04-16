@@ -14,7 +14,7 @@ namespace Code.Infrastructure.Sounds
 
         private GameObject _root;
         private AudioSource _music;
-        private AudioSource _sfx;
+        private SoundManager _soundManager;
 
         private AudioMixer _mixer;
         private SoundMixersSO _mixers;
@@ -56,14 +56,22 @@ namespace Code.Infrastructure.Sounds
 
         public float GetMasterVolume() => _masterNormalized;
 
-        public void PlaySfx(AudioClip clip, float volumeScale = 1f, float pitch = 1f)
+        public SoundBuilder CreateSoundBuilder()
         {
-            if (clip == null)
+            EnsureAudioSystem();
+            return _soundManager != null ? _soundManager.CreateSoundBuilder() : null;
+        }
+
+        public void Play(SoundData soundData)
+        {
+            if (soundData == null)
                 return;
 
-            EnsureAudioSources();
-            _sfx.pitch = pitch;
-            _sfx.PlayOneShot(clip, Mathf.Clamp01(volumeScale));
+            EnsureAudioSystem();
+            if (_soundManager == null)
+                return;
+
+            _soundManager.CreateSoundBuilder().Play(soundData);
         }
 
         public void PlayMusic(AudioClip clip, bool loop = true, float volumeScale = 1f)
@@ -71,7 +79,7 @@ namespace Code.Infrastructure.Sounds
             if (clip == null)
                 return;
 
-            EnsureAudioSources();
+            EnsureAudioSystem();
             _music.loop = loop;
             _music.clip = clip;
             _music.volume = Mathf.Clamp01(volumeScale);
@@ -123,7 +131,7 @@ namespace Code.Infrastructure.Sounds
             return true;
         }
 
-        private void EnsureAudioSources()
+        private void EnsureAudioSystem()
         {
             if (_root != null)
                 return;
@@ -139,10 +147,8 @@ namespace Code.Infrastructure.Sounds
             _music.loop = true;
             _music.outputAudioMixerGroup = _mixers.MusicGroup;
 
-            _sfx = _root.AddComponent<AudioSource>();
-            _sfx.playOnAwake = false;
-            _sfx.loop = false;
-            _sfx.outputAudioMixerGroup = _mixers.SoundGroup;
+            _soundManager = _root.AddComponent<SoundManager>();
+            _soundManager.Construct(_mixers);
         }
     }
 }

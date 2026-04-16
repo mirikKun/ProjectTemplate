@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 
 namespace Code.Infrastructure.Sounds.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "SoundMixersConfig", menuName = "ScriptableObjects/Sound/SoundMixersConfig")]
+    [CreateAssetMenu(fileName = "SoundMixersConfig", menuName = "Configs/Sound/SoundMixersConfig")]
 
     public class SoundMixersSO:ScriptableObject
     {
@@ -19,5 +19,14 @@ namespace Code.Infrastructure.Sounds.ScriptableObjects
         public string MasterVolumeParameter => _masterVolumeParameter;
         public string MusicVolumeParameter => _musicVolumeParameter;
         public string SfxVolumeParameter => _sfxVolumeParameter;
+
+        [field: Header("SFX Pool")]
+        [field: SerializeField] public int SfxPoolDefaultCapacity { get; private set; } = 10;
+        [field: SerializeField] public int SfxPoolMaxSize { get; private set; } = 64;
+        [field: SerializeField] public int MaxFrequentSfxInstances { get; private set; } = 30;
+
+        [field: Header("3D SFX")]
+        [field: SerializeField] public float Sfx3DMinDistance { get; private set; } = 1f;
+        [field: SerializeField] public float Sfx3DMaxDistance { get; private set; } = 50f;
     }
 }

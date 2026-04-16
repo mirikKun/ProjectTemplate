@@ -11,7 +11,9 @@ namespace Code.Infrastructure.Sounds
         float GetSFXVolume();
         float GetMasterVolume();
 
-        void PlaySfx(AudioClip clip, float volumeScale = 1f, float pitch = 1f);
+        SoundBuilder CreateSoundBuilder();
+        void Play(SoundData soundData);
+
         void PlayMusic(AudioClip clip, bool loop = true, float volumeScale = 1f);
         void StopMusic();
     }

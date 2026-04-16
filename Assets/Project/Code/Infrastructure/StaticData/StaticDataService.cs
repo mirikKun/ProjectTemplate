@@ -38,7 +38,7 @@ namespace Code.Infrastructure.StaticData
         private void LoadWindows()
         {
             _windowPrefabsById = Resources
-                .Load<WindowsConfig>("Configs/Windows/windowsConfig")
+                .Load<WindowsConfig>("Configs/WindowConfig")
                 .WindowConfigs
                 .ToDictionary(x => x.Id, x => x.Prefab);
         }
@@ -50,7 +50,7 @@ namespace Code.Infrastructure.StaticData
         private void LoadSettingsConfig()
         {
             _settingsConfig  = Resources
-                .Load<SettingsConfig>("Configs/Settings/SettingsConfig");
+                .Load<SettingsConfig>("Configs/SettingsConfig");
         }
 
     }

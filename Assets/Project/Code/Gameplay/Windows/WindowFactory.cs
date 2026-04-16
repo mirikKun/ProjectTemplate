@@ -22,6 +22,11 @@ namespace Code.Gameplay.Windows
         public BaseWindow CreateWindow(WindowId windowId) =>
             _instantiator.InstantiatePrefabForComponent<BaseWindow>(PrefabFor(windowId), _uiRoot);
 
+        public T CreateWindow<T>(WindowId windowId) where T : BaseWindow
+        {
+            return _instantiator.InstantiatePrefabForComponent<T>(PrefabFor(windowId), _uiRoot);
+        }
+
         private GameObject PrefabFor(WindowId id) =>
             _staticData.GetWindowPrefab(id);
     }

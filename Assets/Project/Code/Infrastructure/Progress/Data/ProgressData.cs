@@ -1,6 +1,11 @@
-﻿namespace Code.Infrastructure.Progress.Data
+﻿using System;
+using Code.Infrastructure.Saving;
+
+namespace Code.Infrastructure.Progress.Data
 {
-    public class ProgressData
+    [Serializable]
+
+    public class ProgressData: BaseSaveModel<ProgressData>
     {
     }
 }
