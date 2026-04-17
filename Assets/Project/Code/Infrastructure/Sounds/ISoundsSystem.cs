@@ -1,3 +1,4 @@
+using Code.Infrastructure.Sounds.Enum;
 using UnityEngine;
 
 namespace Code.Infrastructure.Sounds
@@ -16,5 +17,6 @@ namespace Code.Infrastructure.Sounds
 
         void PlayMusic(AudioClip clip, bool loop = true, float volumeScale = 1f);
         void StopMusic();
+        void Play(DefaultSounds defaultSound);
     }
 }

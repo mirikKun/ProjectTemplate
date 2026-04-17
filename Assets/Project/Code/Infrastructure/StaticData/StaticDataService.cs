@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Code.Gameplay.Windows;
@@ -13,6 +13,7 @@ namespace Code.Infrastructure.StaticData
     {
         private SettingsConfig _settingsConfig;
         private SoundMixersSO _soundMixersSo;
+        private DefaultSoundsConfig _defaultSoundsConfig;
 
         private Dictionary<WindowId, GameObject> _windowPrefabsById;
 
@@ -21,6 +22,7 @@ namespace Code.Infrastructure.StaticData
             LoadWindows();
             LoadSettingsConfig();
             LoadMixersData();
+            LoadDefaultSoundsConfig();
 
         }
 
@@ -28,6 +30,12 @@ namespace Code.Infrastructure.StaticData
         {
             _soundMixersSo  = Resources
                 .Load<SoundMixersSO>("Configs/Sound/SoundMixersConfig");        }
+
+        private void LoadDefaultSoundsConfig()
+        {
+            _defaultSoundsConfig = Resources
+                .Load<DefaultSoundsConfig>("Configs/Sound/DefaultSoundsConfig");
+        }
 
 
         public GameObject GetWindowPrefab(WindowId id) =>
@@ -46,6 +54,7 @@ namespace Code.Infrastructure.StaticData
         public SettingsConfig GetSettingsConfig() => 
             _settingsConfig ?? throw new Exception("Settings config was not loaded");
         public SoundMixersSO GetSoundMixersSO()=>_soundMixersSo;
+        public DefaultSoundsConfig GetDefaultSoundsConfig() => _defaultSoundsConfig;
 
         private void LoadSettingsConfig()
         {

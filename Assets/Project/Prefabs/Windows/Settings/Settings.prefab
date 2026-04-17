@@ -462,8 +462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.Gameplay.Windows.SpecificWindows.SettingsWindow
   <Id>k__BackingField: 1
   _masterVolume: {fileID: 3072372427780034158}
-  _sfxVolume: {fileID: 3088755426861736842}
-  _musicVolume: {fileID: 7861430634886388292}
+  _sfxVolume: {fileID: 7861430634886388292}
+  _musicVolume: {fileID: 3088755426861736842}
   _mouseSensitivity: {fileID: 4414831355207898609}
   _closeButton: {fileID: 2891655246079357833}
 --- !u!1 &2352851193582852708

@@ -34,6 +34,18 @@ namespace Code.Infrastructure.Sounds
         public bool IgnoreListenerPause;
 
         public AudioRolloffMode RolloffMode = AudioRolloffMode.Logarithmic;
+
+        public SoundData()
+        {
+            Priority = 128;
+            Volume = 1f;
+            Pitch = 1f;
+            ReverbZoneMix = 1f;
+            DopplerLevel = 1f;
+
+            MinDistance = 1f;
+            MaxDistance = 500f;
+            AudioRolloffMode RolloffMode = AudioRolloffMode.Logarithmic;
+        }
     }
 }
-

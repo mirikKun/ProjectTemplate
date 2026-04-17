@@ -1,4 +1,6 @@
 using Code.Gameplay.Levels.Enum;
+using Code.Infrastructure.Sounds;
+using Code.Infrastructure.Sounds.Enum;
 using Code.Infrastructure.States.GameStates;
 using Code.Infrastructure.States.StateMachine;
 using UnityEngine;
@@ -14,10 +16,12 @@ namespace Code.Gameplay.Windows.SpecificWindows
         [SerializeField] private Button _exitButton;
         private IGameStateMachine _stateMachine;
         private IWindowService _windowService;
+        private ISoundsSystem _soundsSystem;
 
         [Inject]
-        private void Construct(IGameStateMachine gameStateMachine,IWindowService windowService)
+        private void Construct(IGameStateMachine gameStateMachine,IWindowService windowService,ISoundsSystem soundsSystem)
         {
+            _soundsSystem = soundsSystem;
             _windowService = windowService;
             _stateMachine = gameStateMachine;
         }
@@ -30,17 +34,25 @@ namespace Code.Gameplay.Windows.SpecificWindows
 #if UNITY_WEBGL
             _exitButton.gameObject.SetActive(false);
 #endif
-            
+            _soundsSystem.Play(DefaultSounds.WindowOpen);
+
         }
 
         private void LoadGameplayScene()
         {
+            PlayButtonClickSound();
             _stateMachine.Enter<LoadingGameplayState,Scenes>(Scenes.Gameplay);
         }
 
         private void OpenSettingsWindow()
         {
+            PlayButtonClickSound();
             _windowService.Open(WindowId.Settings);
+        }
+
+        private void PlayButtonClickSound()
+        {
+            _soundsSystem.Play(DefaultSounds.ButtonClick);
         }
 
         private void Exit()

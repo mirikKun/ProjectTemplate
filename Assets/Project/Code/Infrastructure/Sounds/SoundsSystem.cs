@@ -1,3 +1,4 @@
+using Code.Infrastructure.Sounds.Enum;
 using Code.Infrastructure.Sounds.ScriptableObjects;
 using Code.Infrastructure.StaticData;
 using UnityEngine;
@@ -73,6 +74,15 @@ namespace Code.Infrastructure.Sounds
 
             _soundManager.CreateSoundBuilder().Play(soundData);
         }
+        public void Play(DefaultSounds defaultSound)
+        {
+
+            if (_staticDataService.GetDefaultSoundsConfig().TryGet(defaultSound, out var soundData))
+            {
+                Play(soundData);
+            }
+        }
+
 
         public void PlayMusic(AudioClip clip, bool loop = true, float volumeScale = 1f)
         {

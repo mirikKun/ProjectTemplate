@@ -1,4 +1,6 @@
 using Code.Infrastructure.Settings;
+using Code.Infrastructure.Sounds;
+using Code.Infrastructure.Sounds.Enum;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,10 +17,13 @@ namespace Code.Gameplay.Windows.SpecificWindows
         [SerializeField] private Button _closeButton;
         private ISettingsService _settingsService;
         private IWindowService _windowService;
+        private ISoundsSystem _soundsSystem;
 
         [Inject]
-        private void Construct(ISettingsService settingsService, IWindowService windowService)
+        private void Construct(ISettingsService settingsService, IWindowService windowService,
+            ISoundsSystem soundsSystem)
         {
+            _soundsSystem = soundsSystem;
             _windowService = windowService;
             _settingsService = settingsService;
         }
@@ -26,26 +31,43 @@ namespace Code.Gameplay.Windows.SpecificWindows
         protected override void Initialize()
         {
             base.Initialize();
+            
+            
             _masterVolume.onValueChanged.AddListener(_settingsService.SetMasterVolume);
             _sfxVolume.onValueChanged.AddListener(_settingsService.SetSFXVolume);
             _musicVolume.onValueChanged.AddListener(_settingsService.SetMusicVolume);
             _mouseSensitivity.onValueChanged.AddListener(_settingsService.SetMouseSensitivity);
 
+            _masterVolume.onValueChanged.AddListener((_) => PlayButtonClickSound());
+            _sfxVolume.onValueChanged.AddListener((_) => PlayButtonClickSound());
+            _musicVolume.onValueChanged.AddListener((_) => PlayButtonClickSound());
+            _mouseSensitivity.onValueChanged.AddListener((_) => PlayButtonClickSound());
+
             _closeButton.onClick.AddListener(CloseWindow);
 
             //_settingsService.LoadSettings();
 
-            _masterVolume.value = _settingsService.SettingsData.MasterVolume;
-            _sfxVolume.value = _settingsService.SettingsData.SFXVolume;
-            _musicVolume.value = _settingsService.SettingsData.MusicVolume;
+            _masterVolume.SetValueWithoutNotify(_settingsService.SettingsData.MasterVolume);
+            _sfxVolume.SetValueWithoutNotify(_settingsService.SettingsData.SFXVolume);
+            _musicVolume.SetValueWithoutNotify(_settingsService.SettingsData.MusicVolume);
 
             _mouseSensitivity.minValue = _settingsService.SettingsConfig.MinMouseSensitivity;
             _mouseSensitivity.maxValue = _settingsService.SettingsConfig.MaxMouseSensitivity;
-            _mouseSensitivity.value = _settingsService.SettingsData.MouseSensitivity;
+            _mouseSensitivity.SetValueWithoutNotify( _settingsService.SettingsData.MouseSensitivity);
+
+
+            //_soundsSystem.Play(DefaultSounds.WindowOpen);
+        }
+
+        private void PlayButtonClickSound()
+        {
+            if(UnityEngine.Input.GetMouseButtonDown(0))
+            _soundsSystem.Play(DefaultSounds.ButtonClick);
         }
 
         private void CloseWindow()
         {
+            PlayButtonClickSound();
             _windowService.Close(WindowId.Settings);
             _settingsService.SaveSettings();
         }

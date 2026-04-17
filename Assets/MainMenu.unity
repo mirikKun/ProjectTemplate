@@ -362,8 +362,8 @@ GameObject:
   m_Component:
   - component: {fileID: 627265517}
   - component: {fileID: 627265516}
-  - component: {fileID: 627265518}
   - component: {fileID: 627265519}
+  - component: {fileID: 627265518}
   m_Layer: 0
   m_Name: Boot
   m_TagString: Untagged
@@ -410,6 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae94f76cb094d58b2d8d7529a7de510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Gameplay.Levels.MainMenu.MainMenuInitializer
+  _musicSound: {fileID: 8300000, guid: c2808755dc38425458684d41c53d6631, type: 3}
 --- !u!114 &627265519
 MonoBehaviour:
   m_ObjectHideFlags: 0
