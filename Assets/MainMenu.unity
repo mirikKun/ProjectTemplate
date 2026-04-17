@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae94f76cb094d58b2d8d7529a7de510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Gameplay.Levels.MainMenu.MainMenuInitializer
-  _musicSound: {fileID: 8300000, guid: c2808755dc38425458684d41c53d6631, type: 3}
+  _musicSound: {fileID: 8300000, guid: bf0ef5875dbf8394eb4d5084ac197225, type: 3}
 --- !u!114 &627265519
 MonoBehaviour:
   m_ObjectHideFlags: 0
