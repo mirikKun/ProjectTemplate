@@ -64,6 +64,19 @@ namespace Code.Infrastructure.Sounds
             FrequentSoundEmitters.Clear();
         }
 
+        public void StopSound(SoundData soundData)
+        {
+            if (soundData == null)
+                return;
+
+            LinkedList<SoundEmitter> tempList = new LinkedList<SoundEmitter>(_activeSoundEmitters);
+            foreach (SoundEmitter soundEmitter in tempList)
+            {
+                if (soundEmitter.Data == soundData)
+                    soundEmitter.Stop();
+            }
+        }
+
         private void InitializePool()
         {
             _soundEmitterPool = new ObjectPool<SoundEmitter>(

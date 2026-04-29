@@ -74,6 +74,19 @@ namespace Code.Infrastructure.Sounds
 
             _soundManager.CreateSoundBuilder().Play(soundData);
         }
+
+        public void StopSound(SoundData soundData)
+        {
+            if (soundData == null)
+                return;
+
+            EnsureAudioSystem();
+            if (_soundManager == null)
+                return;
+
+            _soundManager.StopSound(soundData);
+        }
+
         public void Play(DefaultSounds defaultSound)
         {
 

@@ -14,6 +14,7 @@ namespace Code.Infrastructure.Sounds
 
         SoundBuilder CreateSoundBuilder();
         void Play(SoundData soundData);
+        void StopSound(SoundData soundData);
 
         void PlayMusic(AudioClip clip, bool loop = true, float volumeScale = 1f);
         void StopMusic();

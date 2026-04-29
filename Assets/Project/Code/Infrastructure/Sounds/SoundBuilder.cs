@@ -6,6 +6,7 @@ namespace Code.Infrastructure.Sounds
     {
         private readonly SoundManager _soundManager;
         private Vector3 _position = Vector3.zero;
+        private Transform _parent;
         private bool _randomPitch;
 
         public SoundBuilder(SoundManager soundManager)
@@ -25,6 +26,12 @@ namespace Code.Infrastructure.Sounds
             return this;
         }
 
+        public SoundBuilder WithParent(Transform parent)
+        {
+            _parent = parent;
+            return this;
+        }
+
         public void Play(SoundData soundData)
         {
             if (soundData == null)
@@ -39,7 +46,7 @@ namespace Code.Infrastructure.Sounds
             SoundEmitter soundEmitter = _soundManager.Get();
             soundEmitter.Initialize(soundData);
             soundEmitter.transform.position = _position;
-            soundEmitter.transform.parent = _soundManager.transform;
+            soundEmitter.transform.SetParent(_parent != null ? _parent : _soundManager.transform, true);
 
             if (_randomPitch)
                 soundEmitter.WithRandomPitch();
