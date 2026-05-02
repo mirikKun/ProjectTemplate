@@ -1,10 +1,10 @@
-﻿using Code.Infrastructure.States.Factory;
+using Code.Infrastructure.States.Factory;
 using Code.Infrastructure.States.StateInfrastructure;
 using Zenject;
 
 namespace Code.Infrastructure.States.StateMachine
 {
-    public class GameStateMachine : IGameStateMachine, ITickable
+    public class GameStateMachine : IGameStateMachine, ITickable, IFixedTickable, ILateTickable
     {
         private IExitableState _activeState;
         private readonly IStateFactory _stateFactory;
@@ -18,6 +18,18 @@ namespace Code.Infrastructure.States.StateMachine
         {
             if (_activeState is IUpdateable updateableState)
                 updateableState.Update();
+        }
+
+        public void FixedTick()
+        {
+            if (_activeState is IFixedUpdateable fixedUpdateableState)
+                fixedUpdateableState.FixedUpdate();
+        }
+
+        public void LateTick()
+        {
+            if (_activeState is ILateUpdateable lateUpdateableState)
+                lateUpdateableState.LateUpdate();
         }
 
         public void Enter<TState>() where TState : class, IState

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Code.Gameplay.Common.Time
 {
@@ -7,8 +8,9 @@ namespace Code.Gameplay.Common.Time
         private bool _paused=false;
         private float _timeScale=1;
 
-        public float DeltaTime => !_paused ? UnityEngine.Time.deltaTime : 0;
-        public float TimeScale => _paused?0:_timeScale;
+        public float DeltaTime => !_paused ? Time.deltaTime : 0;
+        public float FixedDeltaTime => !_paused ? Time.fixedDeltaTime : 0;
+        public float TimeScale => _paused ? 0 : _timeScale;
         
 
         public DateTime UtcNow => DateTime.UtcNow;

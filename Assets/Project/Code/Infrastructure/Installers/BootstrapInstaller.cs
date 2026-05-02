@@ -1,6 +1,7 @@
 using Code.Gameplay.Cameras.Provider;
 using Code.Gameplay.Common.Random;
 using Code.Gameplay.Common.Time;
+using Code.Gameplay.Common.Update;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Levels;
 using Code.Gameplay.Windows;
@@ -36,7 +37,7 @@ namespace Code.Infrastructure.Installers
         private void BindGameStateMachine()
         {
             Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
-            Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
         }
         private void BindGameStates()
         {
@@ -85,6 +86,7 @@ namespace Code.Infrastructure.Installers
         {
             Container.Bind<IRandomService>().To<UnityRandomService>().AsSingle();
             Container.Bind<ITimeService>().To<UnityTimeService>().AsSingle();
+            Container.Bind<IUpdateService>().To<UpdateService>().AsSingle();
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
             
             Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
