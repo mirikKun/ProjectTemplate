@@ -10,7 +10,7 @@ namespace Code.Common.Entity.Effects
     {
         public event Action<Effect> OnCompleted;
 
-        public abstract void Execute(BaseEntity caster, BaseEntity target, Transform from);
+        public abstract void Execute(BaseEntity caster, BaseEntity target);
 
         public virtual void Cancel() => RaiseCompleted();
 
@@ -22,7 +22,7 @@ namespace Code.Common.Entity.Effects
     {
         [SerializeField] private float _amount;
 
-        public override void Execute(BaseEntity caster, BaseEntity target, Transform from)
+        public override void Execute(BaseEntity caster, BaseEntity target)
         {
             if (caster == target)
             {

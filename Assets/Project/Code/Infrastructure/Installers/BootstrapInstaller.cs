@@ -2,7 +2,7 @@ using Code.Gameplay.Cameras.Provider;
 using Code.Gameplay.Common.Random;
 using Code.Gameplay.Common.TimeService;
 using Code.Gameplay.Common.UpdatesService;
-using Code.Gameplay.Input.Service;
+using Code.Infrastructure.Input;
 using Code.Gameplay.Levels;
 using Code.Gameplay.Windows;
 using Code.Infrastructure.AssetManagement;
@@ -48,9 +48,7 @@ namespace Code.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<LoadingGameplayState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameplayEnterState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameloopLoopState>().AsSingle();
-            
-
-
+            Container.BindInterfacesAndSelfTo<GameplayPauseState>().AsSingle();
         }
 
         private void BindCameraProvider()
@@ -95,11 +93,12 @@ namespace Code.Infrastructure.Installers
 
         private void BindInputService()
         {
-            Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerInputService>().AsSingle();
         }
 
         public void Initialize()
         {
+            Container.Resolve<IInputService>().EnablePlayerActions();
             Container.Resolve<IGameStateMachine>().Enter<BootstrapState>();
         }
     }

@@ -48,7 +48,7 @@ namespace Code.Common.Entity
 
             effect.OnCompleted += RemoveEffect;
             _activeEffects.Add(effect);
-            effect.Execute(caster, this, from);
+            effect.Execute(caster, this);
         }
 
         private void RemoveEffect(Effect effect)
