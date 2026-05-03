@@ -1,4 +1,4 @@
-using Code.Gameplay.Common.Time;
+using Code.Gameplay.Common.TimeService;
 using Code.Gameplay.Common.Update;
 using Code.Infrastructure.States.StateInfrastructure;
 using UnityEngine;

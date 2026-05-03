@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Code.Gameplay.Common.Time
+namespace Code.Gameplay.Common.TimeService
 {
     public class UnityTimeService : ITimeService
     {
