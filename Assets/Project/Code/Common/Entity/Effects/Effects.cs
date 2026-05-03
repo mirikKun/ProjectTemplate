@@ -1,10 +1,9 @@
 using System;
-using Project.Scripts.GamePlay.Common.Health;
-using Project.Scripts.Utils.ActionList;
+using Code.Common.Health;
+using Code.Utils.ActionList;
 using UnityEngine;
 
-
-namespace Project.Scripts.GamePlay.Core.Entity.Effects
+namespace Code.Common.Entity.Effects
 {
     [Serializable]
     public abstract class Effect : IActionElement

@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
+using Code.Utils;
+using Code.Utils.Attributes;
 using UnityEditor;
 using UnityEngine;
-using Project.Scripts.Utils;
-using Project.Scripts.Utils.Attributes;
 
-namespace Project.Scripts.Utils.Editor
+namespace Project.Code.Utils.Editor
 {
     [CustomPropertyDrawer(typeof(SerializableType))]
     public class SerializableTypeDrawer : PropertyDrawer

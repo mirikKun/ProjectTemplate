@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-namespace ImprovedTimers.Project.Scripts.Utils.Timers
+namespace ImprovedTimers.Project.Code.Utils.Timers
 {
     /// <summary>
     /// Countdown timer that fires an event every interval until completion.

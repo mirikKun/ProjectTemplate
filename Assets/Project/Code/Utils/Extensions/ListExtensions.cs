@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Project.Scripts.Utils.Extensions {
+namespace Code.Utils.Extensions {
     public static class ListExtensions {
         static Random rng;
         

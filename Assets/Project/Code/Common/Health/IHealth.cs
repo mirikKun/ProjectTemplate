@@ -1,7 +1,7 @@
 using System;
-using Project.Scripts.GamePlay.Core.Entity;
+using Code.Common.Entity;
 
-namespace Project.Scripts.GamePlay.Common.Health
+namespace Code.Common.Health
 {
     public interface IHealth
     {

@@ -1,4 +1,4 @@
-namespace Code.Gameplay.Common.Update
+namespace Code.Gameplay.Common.UpdatesService
 {
     public interface IGameLateUpdateable
     {

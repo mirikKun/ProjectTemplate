@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-namespace Project.Scripts.Utils.Extensions
+namespace Code.Utils.Extensions
 {
     public static class GraphicExtensions
     {

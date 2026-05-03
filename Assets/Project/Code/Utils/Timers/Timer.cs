@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ImprovedTimers.Project.Scripts.Utils.Timers {
+namespace ImprovedTimers.Project.Code.Utils.Timers {
     public abstract class Timer : IDisposable {
         public float CurrentTime { get; protected set; }
         public bool IsRunning { get; private set; }

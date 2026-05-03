@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using ImprovedTimers.Project.Scripts.Utils.Timers.Extensions;
+using ImprovedTimers.Project.Code.Utils.Timers.Extensions;
 using UnityEngine;
 
-namespace ImprovedTimers.Project.Scripts.Utils.Timers {
+namespace ImprovedTimers.Project.Code.Utils.Timers {
     public static class TimerManager {
         static readonly List<Timer> timers = new();
         static readonly List<Timer> sweep = new();

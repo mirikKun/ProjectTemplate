@@ -1,5 +1,5 @@
 using Code.Gameplay.Common.TimeService;
-using Code.Gameplay.Common.Update;
+using Code.Gameplay.Common.UpdatesService;
 using Code.Infrastructure.States.StateInfrastructure;
 using UnityEngine;
 

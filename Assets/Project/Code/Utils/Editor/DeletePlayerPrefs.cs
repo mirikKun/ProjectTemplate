@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Project.Scripts.Utils.Editor
+namespace Project.Code.Utils.Editor
 {
     public static class DeletePlayerPrefs
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Project.Scripts.GamePlay.Core.Factory
+namespace Code.Common.Factory
 {
     public abstract class Flyweight<TType>:MonoBehaviour where TType:Enum
     {

@@ -1,9 +1,10 @@
 using System;
 using System.Linq;
+using Code.Utils.ActionList;
 using UnityEditor;
 using UnityEngine;
 
-namespace Project.Scripts.Utils.ActionList.Editor
+namespace Project.Code.Utils.ActionList.Editor
 {
     public class ActionListAttributeDrawer<T> : PropertyDrawer where T: IActionElement
     {

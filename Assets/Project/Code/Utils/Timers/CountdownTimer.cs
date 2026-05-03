@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace ImprovedTimers.Project.Scripts.Utils.Timers {
+namespace ImprovedTimers.Project.Code.Utils.Timers {
     /// <summary>
     /// Timer that counts down from a specific value to zero.
     /// </summary>

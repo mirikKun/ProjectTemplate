@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Project.Scripts.Utils
+namespace Code.Utils
 {
     public static class PhysicsCollisionMatrixLayerMasks
     {

@@ -1,8 +1,8 @@
 using System;
-using Project.Scripts.Utils.Extensions;
+using Code.Utils.Extensions;
 using UnityEngine;
 
-namespace Project.Scripts.Utils.Attributes
+namespace Code.Utils.Attributes
 {
     public class TypeFilterAttribute : PropertyAttribute
     {

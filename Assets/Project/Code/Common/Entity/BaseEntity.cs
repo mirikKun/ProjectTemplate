@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Code.Common.IdProvider;
 using UnityEngine;
 
-namespace Project.Scripts.GamePlay.Core.Entity
+namespace Code.Common.Entity
 {
     public abstract class BaseEntity:MonoBehaviour
     {
@@ -29,7 +28,7 @@ namespace Project.Scripts.GamePlay.Core.Entity
             InitComponentsRegistry();
         }
 
-        protected virtual int GetNextId() => IdProvider.GetNext<BaseEntity>();
+        protected virtual int GetNextId() => IdProvider.IdProvider.GetNext<BaseEntity>();
 
         protected virtual void InitComponentsRegistry()
         {

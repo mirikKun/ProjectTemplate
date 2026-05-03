@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 
-namespace Project.Scripts.GamePlay.Core.Factory
+namespace Code.Common.Factory
 {
     public abstract class FlyweightFactory<T, TType> where T : Flyweight<TType> where TType : Enum
     {

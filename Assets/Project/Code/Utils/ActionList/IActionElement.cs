@@ -1,4 +1,4 @@
-namespace Project.Scripts.Utils.ActionList
+namespace Code.Utils.ActionList
 {
     public interface IActionElement
     {

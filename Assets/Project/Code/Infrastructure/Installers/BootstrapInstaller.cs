@@ -1,7 +1,7 @@
 using Code.Gameplay.Cameras.Provider;
 using Code.Gameplay.Common.Random;
 using Code.Gameplay.Common.TimeService;
-using Code.Gameplay.Common.Update;
+using Code.Gameplay.Common.UpdatesService;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Levels;
 using Code.Gameplay.Windows;

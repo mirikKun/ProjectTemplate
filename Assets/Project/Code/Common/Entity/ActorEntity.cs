@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Project.Scripts.GamePlay.Common.Health;
-using Project.Scripts.GamePlay.Core.Entity.Effects;
+using Code.Common.Entity.Effects;
+using Code.Common.Health;
 using UnityEngine;
 
-namespace Project.Scripts.GamePlay.Core.Entity
+namespace Code.Common.Entity
 {
     public class ActorEntity:BaseEntity
     {

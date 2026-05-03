@@ -1,9 +1,8 @@
-using System;
-using Code.Gameplay.Common.Update;
+using Code.Gameplay.Common.UpdatesService;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Utils.Components
+namespace Code.Utils.Components
 {
     public class PositionFollower : MonoBehaviour, IGameUpdateable
     {

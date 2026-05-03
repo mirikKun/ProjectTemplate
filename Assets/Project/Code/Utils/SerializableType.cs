@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Project.Scripts.Utils
+namespace Code.Utils
 {
     [Serializable]
     public class SerializableType : ISerializationCallbackReceiver

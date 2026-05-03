@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Project.Scripts.GamePlay.Core.Entity
+namespace Code.Common.Entity
 {
     public class ComponentsRegistry
     {

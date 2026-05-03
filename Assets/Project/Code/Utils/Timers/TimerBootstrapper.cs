@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.LowLevel;
 using UnityEngine.PlayerLoop;
 
-namespace ImprovedTimers.Project.Scripts.Utils.Timers {
+namespace ImprovedTimers.Project.Code.Utils.Timers {
     internal static class TimerBootstrapper {
         static PlayerLoopSystem timerSystem;
         

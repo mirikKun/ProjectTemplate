@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Code.Gameplay.Common.Update
+namespace Code.Gameplay.Common.UpdatesService
 {
     public class GameBehaviorCollection<T> where T : class
     {

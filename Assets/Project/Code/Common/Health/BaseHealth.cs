@@ -1,8 +1,8 @@
 using System;
-using Project.Scripts.GamePlay.Core.Entity;
+using Code.Common.Entity;
 using UnityEngine;
 
-namespace Project.Scripts.GamePlay.Common.Health
+namespace Code.Common.Health
 {
     public abstract class BaseHealth:EntityComponent,IHealth
     {

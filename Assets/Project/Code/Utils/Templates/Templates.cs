@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Project.Scripts.Utils.Templates
+namespace Code.Utils.Templates
 {
     public class Templates
     {

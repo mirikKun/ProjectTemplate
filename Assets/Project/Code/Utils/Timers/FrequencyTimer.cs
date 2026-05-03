@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-namespace ImprovedTimers.Project.Scripts.Utils.Timers {
+namespace ImprovedTimers.Project.Code.Utils.Timers {
     /// <summary>
     /// Timer that ticks at a specific frequency. (N times per second)
     /// </summary>
